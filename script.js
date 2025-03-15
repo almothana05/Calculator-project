@@ -3,25 +3,41 @@ let op = "+";
 let op2 = "";
 let out = document.querySelector("#outputDiv");
 function add(operand1 , operand2){
+    operand1 = parseFloat(operand1);
+    operand2 = parseFloat(operand2);
+
     return operand1 +operand2;
 }
 function subtract(operand1 , operand2){
+    operand1 = parseFloat(operand1);
+    operand2 = parseFloat(operand2);
     return operand1 - operand2;
 }
 function multiply(operand1 , operand2){
+    operand1 = parseFloat(operand1);
+    operand2 = parseFloat(operand2);
     return operand1 * operand2;
 }
 function divide(operand1 , operand2){
+    operand1 = parseFloat(operand1);
+    operand2 = parseFloat(operand2);
     return operand1 / operand2;
 }
 function operate(operand1 , operator, operand2){
+    console.log(operand1 , operator , operand2);
+    if(operator == "="){
+        return operand1;
+    }
+    if(operand2 == ""){
+        return operand1;
+    }
     if(operator == '+'){
         return add(operand1, operand2);
     }
     else if(operator == '-'){
         return subtract(operand1, operand2);
     }
-    else if(operator == '*'){
+    else if(operator == 'X'){
         return multiply(operand1 , operand2);
     }
     else if(operator == '/'){
@@ -114,25 +130,40 @@ function addButtonStyle(){
 
 }
 
+function addDot(){
+    if(!op2.includes('.')){
+        op2 += '.';
+    }
+    out.innerHTML = op2;
+}
+function clearCalculator(){
+    op = "+";
+    op1 = "0";
+    op2 = "";
+
+    out.innerHTML = op2;
+}
+
 function appendCharacter(character){
+    if(op == "="){
+        clearCalculator();
+    }
     // console.log("innn");
     op2 += character;
-    
     out.innerHTML = op2;
 }
 
 function doOperation(operator){
-    op1 = string(operate(op1 , op, op2));
+    if(op == "="){
+        op2 = op1;
+        op1 = "0";
+        op = "+";
+        
+    }
+    op1 = "" + operate(op1 , op, op2);
     out.innerHTML = op1;
     op2 = "";
     op = operator
-
-    if(op == "="){
-        op = "+";
-        op2 = op1;
-        op1 = "0";
-        
-    }
     
 }
 
@@ -158,4 +189,14 @@ operators.forEach((operator) =>{
     operator.addEventListener("click", () =>{
         doOperation(operator.innerHTML);
     });
+});
+
+let AC = document.querySelector("#button11");
+AC.addEventListener("click", () => {
+    clearCalculator();
+});
+
+let dot = document.querySelector("#button53");
+dot.addEventListener("click", () => {
+    addDot();
 });
