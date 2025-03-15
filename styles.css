@@ -1,0 +1,42 @@
+#outputDiv{
+    display: flex;
+    height: 100px;
+    width: 60%;
+    border: 2px solid blue;
+    align-items: end;
+    justify-content: end;
+    font-size: 50px;
+}
+#buttonDiv{
+
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 5 / 4;
+    width: 60%;
+    height: 100%;
+    border: 2px solid rebeccapurple;
+}
+.row{
+    flex: 1;
+    display: flex;
+
+}
+
+.square{
+    flex: 1 ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.operands{
+    background-color: chocolate;
+}
+
+.operators{
+    background-color: burlywood;
+}
+
+.square{
+    font-size: 35px;
+}
